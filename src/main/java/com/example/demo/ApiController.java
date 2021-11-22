@@ -81,7 +81,7 @@ public class ApiController {
     }
 
     // 9.      Удалить комментарий из определенной темы
-    /* curl -s DELETE -d 'user=user1&comment=comment1' http://localhost:8080/topics/0/comments */
+    /* curl -s -X DELETE -d 'user=user1&comment=comment1' http://localhost:8080/topics/0/comments */
     @DeleteMapping("topics/{index}/comments")
     public void delCommentTopic(
             @PathVariable("index") Integer index,
@@ -101,10 +101,7 @@ public class ApiController {
         for (Map.Entry entry : topicComment.entrySet()) {
             if (entry.getValue().equals(comment))
                 topicComment.replace((String)entry.getKey(), comment, comment_new);
-/*             if (entry.getValue() == comment) {
-                String user = (String) entry.getKey();
-                topicComment.remove(user, comment);
-                topicComment.put(user, comment_new); */
+
 
         }
     }
@@ -144,7 +141,7 @@ public class ApiController {
     }
 
     // 15.   Удалить все комментарии определенного пользователя
-    /* curl -s DELETE  http://localhost:8080/topics/users/user1 */
+    /* curl -s -X DELETE  http://localhost:8080/topics/users/user1 */
     @DeleteMapping("topics/users/{user}")
     public void delCommentUser(
             @PathVariable("user") String user) {

@@ -99,11 +99,13 @@ public class ApiController {
             @RequestParam("comment_new") String comment_new) {
         HashMap<String, String> topicComment = topicComments.get(index);
         for (Map.Entry entry : topicComment.entrySet()) {
-             if (entry.getValue() == comment) {
+            if (entry.getValue().equals(comment))
+                topicComment.replace((String)entry.getKey(), comment, comment_new);
+/*             if (entry.getValue() == comment) {
                 String user = (String) entry.getKey();
                 topicComment.remove(user, comment);
-                topicComment.put(user, comment_new);
-            }
+                topicComment.put(user, comment_new); */
+
         }
     }
 
